@@ -1,0 +1,94 @@
+---
+title: "R getting started - session 1"
+theme: "CambridgeUS"
+colortheme: "seahorse"
+author: 
+- Alina Ferecatu \newline 
+- (with contributions from Pieter Schoonees and Andreas Alfons) \newline
+- Rotterdam School of Management \newline
+- Erasmus University
+date: "9/2/2020"
+output: 
+  beamer_presentation:
+    slide_level: 2
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Documents and software
+
+Have the **latest version** of:
+
+- R: [https://CRAN.R-project.org](https://CRAN.R-project.org)
+- RStudio Desktop: [https://www.rstudio.com](https://www.rstudio.com)
+
+- Installation instructions on Canvas
+
+## Today's lecture
+
+Getting started with R:
+
+- Overview of R ecosystem
+- Load data
+- Descriptive statistics
+- Graphics
+
+# Overview of R
+
+## About R 
+
+- Open source (free) environment for statistical computing
+- One of the most popular data science tools worldwide
+- Runs on Linux/Unix, Mac OS X, Microsoft Windows
+- Fully developed and easy-to-use programming language
+- Extensible by community contributed packages
+    - 13500+ packages on CRAN, Bioconductor and Github
+
+## What is R used for?
+
+1. Collecting data
+    - Scrape from the web, import from databases, ...
+    
+2. Preparing, exploring and cleaning data
+    - Data wrangling, exploratory data analysis, plotting
+
+3. Modelling
+    - Regression, segmentation, machine learning, custom methods, ...
+
+4. Model evaluation
+   - Assessing model quality
+
+5. Reporting results
+  - Writing (dynamic) reports, visualization, creating interactive web applications, ...
+  
+And more (including everything SPSS can do)
+
+## Who uses R
+::: columns
+
+:::: column
+
+ - Google
+::::
+
+:::: column
+ 
+- NYT
+::::
+
+:::
+
+**You too?**
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
