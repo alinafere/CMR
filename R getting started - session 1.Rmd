@@ -74,21 +74,98 @@ And more (including everything SPSS can do)
 
 :::: column
 
- - Google
+- Google
+- Twitter
+- Facebook
+- New York Times
+- John Deere
+- Deloitte
+- Credit Suisse
+- Novartis
+- eBay
 ::::
 
 :::: column
  
-- NYT
+ - Ford Motor Company
+ - Kickstarter
+ - Uber
+ - Airbnb
+ - Booking.com
+ - Bank of America
+ - McKinsey & Company
+ - FourSquare
+ - ...
+
 ::::
 
 :::
 
 **You too?**
 
-## Slide with Plot
+## RStudio: four panels
 
-```{r pressure}
-plot(pressure)
-```
+- Top left: Script editor (if open)
 
+- Bottom left: R console
+
+- Top right: *Two tabs*
+
+    - Environment: list of objects used in the session
+    - History: allows to re-run previous commands 
+
+- Bottom right: Five tabs
+
+    - Files: browse through filles on the computer
+
+    - Plots: graphics are displayed here
+
+    - Packages: list of installed packages
+
+    - Help: R help files are displayed here
+
+    - Viewer: local web content created in the session
+
+## Example session 1
+
+Please open RStudio, and open example1.R in the script editor
+
+      - Available on Canvas
+      
+      - Execute the line in which your cursor is 
+      with Ctrl / Cmd + Enter
+      
+      - You can also type the command directly in the 
+      console, but it is better to store your commands 
+      separately in a script (reproducibility)
+
+## Script files in RStudio
+
+Create a new script file: File ! New file -> R Script
+
+Save script file:
+
+  - Keyboard shortcut: *Ctrl / Cmd + S*
+  
+  - File -> Save As. . .  and enter the file name in the dialog
+  
+---> Use file extension .R
+ 
+Open existing script file:
+
+  - File -> Open File. . . and select the script file in the dialog
+  
+  - Click the Files tab in the lower right panel, navigate to the script file
+and click on it
+
+## Some details
+
+ - R is case sensitive
+ 
+ - The + prompt means R is waiting for you to complete the command
+ 
+ - Press Esc in the console to cancel the command being evaluated
+ 
+ - Use the Tab key for code completion
+ 
+ - Remember to close your parentheses ()
