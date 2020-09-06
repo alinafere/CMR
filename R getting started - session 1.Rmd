@@ -8,16 +8,18 @@ author:
 - Rotterdam School of Management \newline
 - Erasmus University
 date: "9/2/2020"
+fontsize: 11pt
 output: 
   beamer_presentation:
+    
     slide_level: 2
-    fig_width: 7
-    fig_height: 6
-    fig_caption: true
+    fig_width: 5
+    fig_height: 4
 ---
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
 
@@ -169,3 +171,611 @@ and click on it
  - Use the Tab key for code completion
  
  - Remember to close your parentheses ()
+ 
+## Install packages
+
+1. From CRAN
+
+*Tools --> Install packages ...*
+
+In the dialog:
+  - In the Install from: box, select Repository 
+  
+  - Type the names of the packages into the text box (suggestions are shown as you type)
+  
+  - Make sure that Install dependencies is checked 
+  
+  - Click Install
+  
+2. From command line
+
+``` {r, eval=FALSE}
+install.packages("tidyverse")
+```
+ 
+## Load installed packages
+
+In RStudio:
+
+1. In the lower right panel, click the Packages tab
+
+2. Check the box next to the packages to be loaded
+
+On the command line:
+
+``` {r } 
+library("tidyverse")
+```
+
+--> Install a package **once** on a computer
+
+--> Load it in every new session
+
+# Data and descriptive statistics
+
+## Loading data
+
+R can read all sorts of data:
+ - Native R data files: .RData or .rda
+ 
+ - Text files: .txt and .csv
+ 
+ - Excel spreadsheets: .xls(x)
+ 
+ - SPSS files: .sav and .por
+ 
+... and many others
+
+--> We will use the simplest for now: RData format
+
+--> RStudio makes importing other common data types easy: File --> Import Dataset
+
+## Load RData files: RStudio
+
+RStudio:
+Click the Files tab in the lower right panel, navigate to the R data file and click on it
+
+Or: File --> Open File. . . and select the R data file in the dialog
+
+--> R objects loaded into your session environment (workspace)
+
+## Load RData files: command line
+
+Path relative to the current working directory:
+
+``` {r, eval=FALSE}
+load("Prestige.RData")
+```
+ 
+If the file is not in the working directory, specify the full path:
+
+``` {r}
+load("~/Documents/CMR/session_1/Prestige.RData")
+```
+ 
+
+Always use / and not \\ (Windows!)
+
+## Working directory
+
+R follows a one directory per project philosophy
+
+--> Location where R starts looking for files on the file system
+
+**In RStudio:**
+
+1 Session -> Set Working Directory -> Choose Directory. . .
+
+2 In the dialog, select the desired working directory
+
+**From the command line:**
+
+``` {r}
+setwd("~/Documents/CMR/session_1")
+```
+  
+You can automate this by using RStudio projects:
+  
+--> Opening the RStudio project restores the working directory
+
+## View loaded data set objects
+
+In RStudio:
+
+1 In the top right panel, click the Environment tab
+
+2 Click on the data set object name
+
+On the command line:
+
+--> Type the name of the data set to print it
+
+--> Use the View() function to open RStudio's viewer
+
+## View data sets: command line
+
+Prestige of occupations in Canada in a data frame called Prestige:
+
+--> Too much output even for moderately sized data sets
+
+``` {r}
+Prestige
+```
+
+
+## View first rows of data: head()
+
+--> Get overview of what the data looks like
+
+``` {r}
+head(Prestige)
+```
+
+View last rows of the data:
+``` {r, eval=F}
+tail(Prestige)
+```
+
+## Summarize data: summary()
+``` {r}
+summary(Prestige)
+```
+
+## Basic Data Frame Functions
+
+Dimensions using dim():
+```{r}
+dim(Prestige)
+```
+
+Number of rows and columns separately with nrow() and ncol():
+
+
+```{r}
+nrow(Prestige)
+```
+
+```{r}
+ncol(Prestige)
+```
+
+
+Column (variable) names:
+```{r}
+colnames(Prestige)
+```
+
+
+## Extracting Variables
+One way of extracting variables from a data.frame is via the $ operator:
+
+```{r}
+Prestige$education
+```
+
+--> Type Prestige$ and RStudio will bring up suggestions
+
+
+## Basic Mathematical Functions
+
+::: columns
+
+:::: column
+
+*Operator or function*
+
+\+ 
+
+\- 
+
+\* 
+
+/ 
+
+^ 
+
+abs() 
+
+sqrt() 
+
+log()
+
+exp() 
+::::
+
+:::: column
+
+*Operation*
+
+addition x + y
+
+subtraction x - y
+
+multiplication x * y
+
+division x / y
+
+exponentiation x ^ y
+
+absolute value abs(x)
+
+square root sqrt(x)
+
+logarithm log(x)
+
+exponential function exp(x)
+
+::::
+
+:::
+
+
+## Basic Math Example
+
+*women* as a proportion:
+
+```{r}
+Prestige$women / 100
+```
+
+## Adding a New Variable
+
+Assign a value to a new name, using $ with <-:
+```{r}
+Prestige$income <- 2 ^ Prestige$logincome
+```
+
+Check that it worked:
+ 
+```{r}
+head(Prestige)
+```
+
+## Basic Data Analysis Functions: Vectors
+
+
+::: columns
+
+:::: column
+
+*Function* 
+
+length(x)
+
+min(x)    
+
+max(x)    
+
+sum(x)  
+
+range(x) 
+
+quantile(x) 
+
+mean(x) 
+
+var(x) 
+
+sd(x)
+
+median(x) 
+
+table(x)
+
+table(x, y)
+
+cor(x, y) 
+
+cov(x, y)
+
+::::
+
+:::: column
+
+*Operation*
+
+ Length
+ 
+ Minimum
+ 
+ Maximum
+ 
+ Summation (total)
+ 
+ Minimum and maximum
+ 
+ Quantiles
+ 
+ Mean
+ 
+ Variance
+ 
+ Standard deviation
+ 
+ Median
+ 
+ Contingency table
+ 
+ Cross-tabulation
+ 
+ Correlation
+ 
+ Covariance
+ 
+ 
+::::
+
+:::
+
+## Example
+
+Minimum and maximum percentage of women:
+```{r}
+ min(Prestige$women)
+
+max(Prestige$women)
+
+range(Prestige$women)
+```
+
+Mean, median and standard deviation of logincome:
+
+```{r}
+mean(Prestige$logincome)
+
+median(Prestige$logincome)
+sd(Prestige$logincome)
+```
+
+## Functions
+
+Frequency (contingency) table of type:
+```{r}
+table(Prestige$type)
+```
+
+## Missing values
+You have to specify how R must handle missings (NA):
+--> Depends on function; usually using the na.rm argument
+```{r}
+table(Prestige$type, useNA = "always")
+```
+
+--> See the help page, for example, ?table and ?mean
+--> Default behaviour depends on function
+
+Pearson correlation between women and prestige:
+
+```{r}
+cor(Prestige$women, Prestige$prestige) 
+```
+
+
+## Recap: Special Values
+
+::: columns
+
+:::: column
+NA 
+
+NaN 
+
+Inf 
+
+-Inf
+
+NULL
+
+pi
+
+::::
+
+:::: column
+
+Not available (represents missing value)
+
+Not a number (usually result of division 0/0)
+
+Positive infinity
+
+Negative infinity
+
+Represents undefined value
+
+ 
+::::
+
+:::
+
+## Practice
+
+Consider the patents data in the file patents.RData
+
+Information on patents granted in 2012 in each US state
+
+Variables are described on the next slide
+
+The data were scraped from StatsAmerica and Wikipedia
+
+## Variables
+
+total The total number of granted patents.
+
+utility The number of granted utility patents.
+
+design The number of granted design patents.
+
+plant The number of granted plant patents.
+
+population The number of inhabitants.
+
+area Land area in km2.
+
+governor Party afiliation of the state governor.
+
+## 
+
+area Land area divided into three categories: "small", "medium" and "large".
+
+density The population density.
+
+densitycat Population density divided into two categories: "low" and "high".
+
+logdensity Logarithm of population density.
+
+logutility log(utility+1).
+
+logdesign log(design+1).
+
+logplant log(plant+1).
+
+## Exercises 1: Questions
+
+1 What is the minimum and maximum number of total patents granted per state?
+
+2 What is the Pearson correlation between logtotal and logdensity?
+
+3 How many Republican governors were there in 2012? And how many Democrats? Use the governor variable.
+
+4 How many Republican governors were there in small states? How many Democratic governors were there in large states? Use the areacat variable.
+
+5 What is the mean proportion of the total patents per state that consist of utility patents? And the median and the standard deviation?
+
+
+# Basic plotting with package ggplot2
+
+## Graphics systems in R
+
+R has several plotting systems and packages, including:
+
+- Base graphics (e.g., plot()) is older but still very good
+
+- Package ggplot2 delivers modern, cutting-edge capabilities:
+
+--> We focus on ggplot2 graphics
+
+--> Whatever analysis you do, always check if you can *plot()* the result
+
+## Scatterplot matrix
+
+```{r,  fig.height = 3, fig.width = 5}
+plot(Prestige)
+```
+
+
+## The grammar of graphics
+
+ - Implemented in package ggplot2
+
+ - Designed with recent research on data visualization and human perception in mind
+
+ - Focused on coherence between geometry of the data and geometry of the plot
+
+ - The visual representation should fit the data
+
+--> Must explicitly specify what variables to use and how to plot them
+
+Ref: Wickham (2009): ggplot2: Elegant Graphics for Data Analysis
+
+## Basic usage of ggplot2
+Add together two basic elements:
+
+1. Scaffolding deffned by ggplot()
+
+    - Selects the data set
+    
+    - Deffnes the variables to be used (the aesthetic mapping): function aes()
+
+2. Any number of visual representations of the data, known as geoms
+
+    - Define the visual representation (the geometric objects): function family geom_x()
+    
+    - Different elements are added to the plot using the + operator
+    
+Load the package:
+
+```{r,  fig.height = 2, fig.width = 3}
+library("ggplot2")
+```
+
+## Scatterplot: Scaffolding
+
+```{r,  fig.height = 2, fig.width = 3}
+ggplot(Prestige, aes(x = prestige, y = logincome))
+```
+
+
+## Scatterplot: Scaffolding + points
+
+```{r,  fig.height = 2, fig.width = 3}
+ggplot(Prestige, aes(x = prestige, y = logincome)) +
+  geom_point()
+```
+
+## Histogram
+
+```{r,  fig.height = 2, fig.width = 3}
+ggplot(Prestige, aes(x = prestige)) +
+  geom_histogram()
+```
+
+## Histogram: number of bins
+
+--> For histograms, it is always a good idea to play with the number of bins
+
+  - Number of bins can be specified with argument bins
+  
+  - Bin width can be specified with argument binwidth
+
+## Histogram: number of bins
+```{r, fig.height = 2, fig.width = 3}
+ggplot(Prestige, aes(x = prestige)) +
+  geom_histogram(bins = 15)
+```
+
+## Density plot
+
+```{r, fig.height = 2, fig.width = 3}
+ggplot(Prestige, aes(x = prestige)) +
+  geom_density()
+```
+
+
+# Extras 
+
+## R help
+
+R comes with built-in help for more information on functionality:
+
+ - Help topic is usually the name of a function, data set or package
+
+ - Help files are required for packages on CRAN
+ 
+ - Overview of all help files within a package is available
+ 
+In RStudio:
+
+1 In the lower right panel, click the Help tab
+
+2 Type the topic into the text box on the right (suggestions are shown as you type) 
+ 
+## View R help files: command line
+
+Help for the help() function is available:
+
+``` {r, echo = TRUE} 
+?help
+help("help")
+```
+
+List all help topics within a package:
+``` {r, echo = TRUE} 
+help(package = "ggplot2")
+help("help")
+```
+ 
+Run examples from a help file:
+
+``` {r, echo = TRUE} 
+example("mean")
+```
