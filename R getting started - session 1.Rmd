@@ -740,6 +740,78 @@ ggplot(Prestige, aes(x = prestige)) +
   geom_density()
 ```
 
+## Density plot: kernel and bandwidth
+
+Density estimate depends on the kernel and smoothing bandwidth
+
+Default Gaussian kernel is symmetric and therefore not optimal for asymetric distributions
+
+--> Still useful to get an insight on the shape of the distribution, but be aware of those issues
+
+
+## Boxplot
+
+```{r, fig.height = 2, fig.width = 3}
+ggplot(Prestige, aes(x = "", y = prestige)) + geom_boxplot()
+```
+
+
+## Boxplot statistics
+Upper whisker Largest point still within 1:5IQR of the upper quartile
+
+Top of box Upper quartile (i.e., 75% quantile)
+
+Middle line Median (i.e., 50% quantile)
+
+Bottom of box Lower quartile (i.e., 25% quantile)
+
+Lower whisker Smallest point still within 1:5IQR of the lower quartile
+
+IQR Interquartile range (i.e., difference between upper and lower quartile)
+--> No assumption about statistical distribution
+
+--> But: definition of whiskers assumes some degree of symmetry
+
+
+## Conditional boxplot
+```{r, fig.height = 2, fig.width = 3}
+ggplot(Prestige, aes(x = type, y = prestige)) + geom_boxplot()
+```
+
+## Barplot
+
+```{r, fig.height = 2, fig.width = 3}
+ggplot(Prestige, aes(x = type)) + geom_bar()
+```
+
+
+## Time series plot
+
+Simply use geom line() instead of geom point() to draw connected line instead of scattered points
+--> Example: Eredivisie points of Feyenoord
+
+```{r}
+load("/session_1/Feyenoord.RData")
+```
+
+## Time series plot
+```{r, fig.height = 2, fig.width = 3}
+ggplot(Feyenoord, aes(x = Year, y = Points)) + geom_line()
+```
+Some geoms
+For a complete list of geoms, click here. Important ones include:
+
+geom\_point(): Points
+geom\_line(): Lines / time series
+geom\_[h/v]line(): Horizontal or vertical line
+geom\_bar() Bars
+geom\_boxplot() Box and whiskers plot
+geom\_density() Density estimate
+geom\_smooth() Fitted regression line
+geom\_[text/label]() Text
+geom\_ tile() Rectangles for heat maps
+
+--> Use appropriate geoms!
 
 # Extras 
 
