@@ -597,7 +597,7 @@ similarly:
 
 3. The result is a modified data frame
 
----> All of these can do group-specific computations using group by()
+---> All of these can do group-specific computations using group\_by()
 
 
 ## Subsets of observations
@@ -756,7 +756,7 @@ SDPrice = sd(AskingPrice))
 ```
 
 ## Conditional computations
----> Use function group by() to make all subsequent computations conditional on one or more grouping variables
+---> Use function group\_by() to make all subsequent computations conditional on one or more grouping variables
 
 ---> Use ungroup() to undo the grouping behaviour
 

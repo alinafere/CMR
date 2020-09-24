@@ -40,14 +40,18 @@ ggplot(vwgolf, aes(x = PriceNew, y = AskingPrice)) + geom_point()
 ggplot(vwgolf, aes(x = PriceNew, y = AskingPrice)) + 
   geom_point() + geom_smooth(method = "lm")
 
+
 ## Colours
 ggplot(vwgolf, aes(x = PriceNew, y = AskingPrice)) + 
-  geom_point(colour = "red")
+  geom_point( )
+
+c("aquamarine3", "cornflowerblue", "cornsilk")
 
 colours()
 
 ggplot(vwgolf, aes(x = PriceNew, y = AskingPrice)) + 
-  geom_point(colour = "#00CED1")
+  geom_point(colour = "aquamarine3")
+
 ggplot(vwgolf, aes(x = AskingPrice)) + 
   geom_density(fill = "orangered2")
 
@@ -57,7 +61,7 @@ ggplot(vwgolf, aes(x = PriceNew, y = AskingPrice)) +
              size = 3)
 
 ggplot(vwgolf, aes(x = AskingPrice)) + 
-  geom_density(fill = "grey", linetype = 5, colour = "red")
+  geom_density(fill = "bluec("white", "white", "white")", colour = "red", linetype = 5)
 
 ## Mapping aesthetics to variables
 ggplot(vwgolf, aes(x = PriceNew, y = AskingPrice, fill = Fuel)) + 
