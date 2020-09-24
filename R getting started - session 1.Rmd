@@ -4,11 +4,10 @@ theme: "CambridgeUS"
 colortheme: "seahorse"
 author: 
 - Alina Ferecatu \newline 
-- (with contributions from Pieter Schoonees and Andreas Alfons) \newline
 - Rotterdam School of Management \newline
 - Erasmus University
-date: "9/2/2020"
-fontsize: 11pt
+date: "9/9/2020"
+fontsize: 10pt
 output: 
   beamer_presentation:
     
@@ -22,7 +21,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-
 ## Documents and software
 
 Have the **latest version** of:
@@ -31,6 +29,23 @@ Have the **latest version** of:
 - RStudio Desktop: [https://www.rstudio.com](https://www.rstudio.com)
 
 - Installation instructions on Canvas
+
+## Target 
+
+```{r, echo=FALSE, fig.height = 4, fig.width = 7}
+load("~/Documents/CMR/session_2/vwgolf.RData")
+
+library(tidyverse)
+
+ggplot(vwgolf, aes(y = AskingPrice, x = PriceNew,
+size = TopSpeed, fill = Mileage)) +
+geom_point(shape = 21) +
+scale_fill_continuous(low = "white", high = "red")+
+labs(title = "Asking Price versus New Price",
+subtitle = "56 second-hand VW Golfs from Marktplaats.nl", x = "New Price (euro)", y = "Asking Price (euro)") 
+```
+
+-->After session 2 (+ statistics and data manipulations)
 
 ## Today's lecture
 
@@ -132,33 +147,32 @@ And more (including everything SPSS can do)
 
 Please open RStudio, and open example1.R in the script editor
 
-      - Available on Canvas
+  - Available on Canvas
       
-      - Execute the line in which your cursor is 
+  - Execute the line in which your cursor is 
       with Ctrl / Cmd + Enter
       
-      - You can also type the command directly in the 
+  - You can also type the command directly in the 
       console, but it is better to store your commands 
       separately in a script (reproducibility)
 
 ## Script files in RStudio
 
-Create a new script file: File ! New file -> R Script
+Create a new script file: File -> New file -> R Script
 
 Save script file:
 
   - Keyboard shortcut: *Ctrl / Cmd + S*
   
-  - File -> Save As. . .  and enter the file name in the dialog
+  - File -> Save As ...  and enter the file name in the dialog
   
 ---> Use file extension .R
  
 Open existing script file:
 
-  - File -> Open File. . . and select the script file in the dialog
+  - File -> Open File ... and select the script file in the dialog
   
-  - Click the Files tab in the lower right panel, navigate to the script file
-and click on it
+  - Click the Files tab in the lower right panel, navigate to the script file and click on it
 
 ## Some details
 
@@ -186,6 +200,8 @@ In the dialog:
   - Make sure that Install dependencies is checked 
   
   - Click Install
+  
+  
   
 2. From command line
 
@@ -216,6 +232,7 @@ library("tidyverse")
 ## Loading data
 
 R can read all sorts of data:
+
  - Native R data files: .RData or .rda
  
  - Text files: .txt and .csv
@@ -233,9 +250,14 @@ R can read all sorts of data:
 ## Load RData files: RStudio
 
 RStudio:
+
 Click the Files tab in the lower right panel, navigate to the R data file and click on it
 
-Or: File --> Open File. . . and select the R data file in the dialog
+Or: 
+
+File --> Open File ... and select the R data file in the dialog
+
+
 
 --> R objects loaded into your session environment (workspace)
 
@@ -264,9 +286,9 @@ R follows a one directory per project philosophy
 
 **In RStudio:**
 
-1 Session -> Set Working Directory -> Choose Directory. . .
+1. Session -> Set Working Directory -> Choose Directory ...
 
-2 In the dialog, select the desired working directory
+2. In the dialog, select the desired working directory
 
 **From the command line:**
 
@@ -282,9 +304,9 @@ You can automate this by using RStudio projects:
 
 In RStudio:
 
-1 In the top right panel, click the Environment tab
+1. In the top right panel, click the Environment tab
 
-2 Click on the data set object name
+2. Click on the data set object name
 
 On the command line:
 
@@ -428,6 +450,7 @@ Prestige$income <- 2 ^ Prestige$logincome
 Check that it worked:
  
 ```{r}
+head(Prestige$income)
 head(Prestige)
 ```
 
@@ -438,7 +461,7 @@ head(Prestige)
 
 :::: column
 
-*Function* 
+**Function**
 
 length(x)
 
@@ -472,7 +495,7 @@ cov(x, y)
 
 :::: column
 
-*Operation*
+**Operation**
 
  Length
  
@@ -510,6 +533,7 @@ cov(x, y)
 ## Example
 
 Minimum and maximum percentage of women:
+
 ```{r}
  min(Prestige$women)
 
@@ -522,7 +546,6 @@ Mean, median and standard deviation of logincome:
 
 ```{r}
 mean(Prestige$logincome)
-
 median(Prestige$logincome)
 sd(Prestige$logincome)
 ```
@@ -536,12 +559,15 @@ table(Prestige$type)
 
 ## Missing values
 You have to specify how R must handle missings (NA):
+
 --> Depends on function; usually using the na.rm argument
+
 ```{r}
 table(Prestige$type, useNA = "always")
 ```
 
 --> See the help page, for example, ?table and ?mean
+
 --> Default behaviour depends on function
 
 Pearson correlation between women and prestige:
@@ -574,13 +600,14 @@ pi
 
 Not available (represents missing value)
 
-Not a number (usually result of division 0/0)
+Not a number (usually division 0/0)
 
 Positive infinity
 
 Negative infinity
 
 Represents undefined value
+
 
  
 ::::
@@ -631,15 +658,15 @@ logplant log(plant+1).
 
 ## Exercises 1: Questions
 
-1 What is the minimum and maximum number of total patents granted per state?
+1. What is the minimum and maximum number of total patents granted per state?
 
-2 What is the Pearson correlation between logtotal and logdensity?
+2. What is the Pearson correlation between logtotal and logdensity?
 
-3 How many Republican governors were there in 2012? And how many Democrats? Use the governor variable.
+3. How many Republican governors were there in 2012? And how many Democrats? Use the governor variable.
 
-4 How many Republican governors were there in small states? How many Democratic governors were there in large states? Use the areacat variable.
+4. How many Republican governors were there in small states? How many Democratic governors were there in large states? Use the areacat variable.
 
-5 What is the mean proportion of the total patents per state that consist of utility patents? And the median and the standard deviation?
+5. What is the mean proportion of the total patents per state that consist of utility patents? And the median and the standard deviation?
 
 
 # Basic plotting with package ggplot2
@@ -648,7 +675,7 @@ logplant log(plant+1).
 
 R has several plotting systems and packages, including:
 
-- Base graphics (e.g., plot()) is older but still very good
+- Base graphics (e.g., *plot()*) is older but still very good
 
 - Package ggplot2 delivers modern, cutting-edge capabilities:
 
@@ -658,7 +685,7 @@ R has several plotting systems and packages, including:
 
 ## Scatterplot matrix
 
-```{r,  fig.height = 3, fig.width = 5}
+```{r,  fig.height = 3, fig.width = 4}
 plot(Prestige)
 ```
 
@@ -675,20 +702,21 @@ plot(Prestige)
 
 --> Must explicitly specify what variables to use and how to plot them
 
-Ref: Wickham (2009): ggplot2: Elegant Graphics for Data Analysis
+Ref: Wickham (2009): [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)
 
 ## Basic usage of ggplot2
+
 Add together two basic elements:
 
 1. Scaffolding deffned by ggplot()
 
     - Selects the data set
     
-    - Deffnes the variables to be used (the aesthetic mapping): function aes()
+    - Defines the variables to be used (the aesthetic mapping): function aes()
 
 2. Any number of visual representations of the data, known as geoms
 
-    - Define the visual representation (the geometric objects): function family geom_x()
+    - Define the visual representation (the geometric objects): function family geom\_x()
     
     - Different elements are added to the plot using the + operator
     
@@ -757,17 +785,18 @@ ggplot(Prestige, aes(x = "", y = prestige)) + geom_boxplot()
 
 
 ## Boxplot statistics
-Upper whisker Largest point still within 1:5IQR of the upper quartile
+Upper whisker: Largest point still within 1.5IQR of the upper quartile
 
-Top of box Upper quartile (i.e., 75% quantile)
+Top of box: Upper quartile (i.e., 75% quantile)
 
-Middle line Median (i.e., 50% quantile)
+Middle line: Median (i.e., 50% quantile)
 
-Bottom of box Lower quartile (i.e., 25% quantile)
+Bottom of box: Lower quartile (i.e., 25% quantile)
 
-Lower whisker Smallest point still within 1:5IQR of the lower quartile
+Lower whisker: Smallest point still within 1.5IQR of the lower quartile
 
-IQR Interquartile range (i.e., difference between upper and lower quartile)
+IQR: Interquartile range (i.e., difference between upper and lower quartile)
+
 --> No assumption about statistical distribution
 
 --> But: definition of whiskers assumes some degree of symmetry
@@ -788,32 +817,118 @@ ggplot(Prestige, aes(x = type)) + geom_bar()
 ## Time series plot
 
 Simply use geom line() instead of geom point() to draw connected line instead of scattered points
+
 --> Example: Eredivisie points of Feyenoord
 
 ```{r}
-load("/session_1/Feyenoord.RData")
+load("~/Documents/CMR/session_1/Feyenoord.RData")
 ```
 
 ## Time series plot
+
 ```{r, fig.height = 2, fig.width = 3}
 ggplot(Feyenoord, aes(x = Year, y = Points)) + geom_line()
 ```
-Some geoms
-For a complete list of geoms, click here. Important ones include:
+
+## Some geoms
+For a complete list of geoms, [click here](https://ggplot2.tidyverse.org/reference/). Important ones include:
 
 geom\_point(): Points
+
 geom\_line(): Lines / time series
+
 geom\_[h/v]line(): Horizontal or vertical line
+
 geom\_bar() Bars
+
 geom\_boxplot() Box and whiskers plot
+
 geom\_density() Density estimate
+
 geom\_smooth() Fitted regression line
+
 geom\_[text/label]() Text
-geom\_ tile() Rectangles for heat maps
+
+geom\_tile() Rectangles for heat maps
 
 --> Use appropriate geoms!
 
-# Extras 
+## Exercise 2
+Use again the patents data:
+
+  1. Plot total vs density, then plot logtotal vs logdensity. What
+do you observe?
+
+  2. Produce histograms of total and logtotal to compare the
+distribution of the number of granted patents before and after the
+log-transformation. Play with the number of bins to get a more
+complete picture of the distributions.
+
+3. Produce a boxplot of logdensity. Do you find any outliers?
+
+4. Produce conditional boxplots of total and logtotal with
+observations grouped by population density category (densitycat).
+
+5. Produce barplots of the factors governor and areacat.
+
+## Acknowledgements
+
+Thank you Pieter Schoonees and Andreas Alfons 
+
+for contributing to these materials!
+
+
+# R extra-credit assignment and hackathon
+
+## R extra-credit assignment
+
+Create a new R script (that is, a .R file) in RStudio. 
+
+Replicate all analyses posted for the CMR sessions 2, 3, 4, and 5, in the *.html* files. 
+
+It is important that your R script contains no errors and is easy to read. 
+
+Remember to include code that loads the required packages.
+
+Include comments (lines that start with a \#) in this text file so that it is clear which code replicates which analysis. 
+
+Save your work under a file name containing Yourname_studentNumber_Rassignment.R
+
+Remember to resave regularly.
+
+Submit the file (one file for all sessions) on Canvas, under *R extra-credit* assignment
+
+Deadline: Oct 8 2020 at 1PM, before the workshop
+
+## R hackathon
+
+Did you spot an error in the code running analyses for the CMR sessions 2, 3, 4, and 5?
+
+--> Add a comment startig with #ERROR before the analysis
+
+--> Propose a correction, and be very specific for which analysis you are proposing the correction
+
+
+Do you have a more elegant solution to replicate an analysis?
+
+--> Add a comment startig with #SUGGESTION before the analysis
+
+--> Suggest new code for the analysis, and be very specific for which analysis you are making the suggestion
+
+To participate, add your name in the CMR sign-up document, on the sheet named *R hackathon*
+
+## R hackathon winner and prise
+
+*The student reporting most errors and suggestions (#ERROR+#SUGGESTION) wins the R hackathon.*
+
+
+![Prise](~/Documents/CMR/R_mktAnalytics.jpeg)
+
+
+
+
+
+# R help
 
 ## R help
 
@@ -827,9 +942,9 @@ R comes with built-in help for more information on functionality:
  
 In RStudio:
 
-1 In the lower right panel, click the Help tab
+1. In the lower right panel, click the Help tab
 
-2 Type the topic into the text box on the right (suggestions are shown as you type) 
+2. Type the topic into the text box on the right (suggestions are shown as you type) 
  
 ## View R help files: command line
 

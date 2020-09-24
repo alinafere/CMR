@@ -1,7 +1,7 @@
 # --------------------------------
 # Example 1 R Script
 # --------------------------------
-
+1+1
 # Create a vector containing the ages of 5 students
 c(22.4, 21.5, 23.7, 21.8, 20.8)
 
