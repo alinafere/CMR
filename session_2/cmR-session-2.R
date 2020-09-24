@@ -43,9 +43,7 @@ ggplot(vwgolf, aes(x = PriceNew, y = AskingPrice)) +
 
 ## Colours
 ggplot(vwgolf, aes(x = PriceNew, y = AskingPrice)) + 
-  geom_point( )
-
-c("aquamarine3", "cornflowerblue", "cornsilk")
+  geom_point()
 
 colours()
 
